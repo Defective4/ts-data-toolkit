@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>EPG Viewer</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        * {
+            font-family: Arial;
+        }
+
+        td {
+            vertical-align: top;
+            border-right: 1px solid black;
+            border-left: 1px solid black;
+            padding: 0px 5px;
+            background: #00000022;
+        }
+
+        th {
+            padding: 0px 5px;
+            border: 1px solid black;
+        }
+
+        tr {
+            border: 1px solid black;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        .program-card {
+            width: 128px;
+            padding: 5px 5px;
+            margin: 5px 0px;
+            background-color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 1px solid white;
+        }
+
+        .program-card:hover {
+            border-color: black;
+        }
+
+        .program-card .card-title {
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .program-card .card-desc {
+            font-size: 12px;
+        }
+
+        .program-card .card-time {
+            font-size: 11px;
+            border-radius: 5px;
+            background-color: #00000019;
+            padding: 0px 5px;
+        }
+
+        .program-card * {
+            user-select: none;
+        }
+
+        .program-cards {}
+
+        .table-container {
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .program-card.now {
+            border-color: orange;
+            background-color: rgb(255, 224, 167);
+        }
+
+        .program-card.now:hover {
+            border-color: rgb(173, 78, 0);
+        }
+
+        table {
+            display: inline-block;
+            max-height: 512px;
+            width: fit-content;
+            max-width: 100%;
+            overflow: scroll;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="epg-title"></h1>
+    <h2 id="epg-date"></h2>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr id="channels">
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="programs">
+                </tr>
+            </tbody>
+        </table>
+        <script>
+            const date = Date.now();
+            const cards = document.getElementsByClassName("program-card");
+            for (var i = 0; i < cards.length; i++) {
+                const card = cards[i];
+                const startTime = card.getAttribute("start-time");
+                const endTime = card.getAttribute("end-time");
+                if (date >= endTime) {
+                    card.style = "display: none";
+                    continue;
+                }
+                if (date >= startTime && date < endTime) {
+                    card.classList.add("now");
+                }
+                card.onclick = () => {
+                    window.open("./events/" + card.getAttribute("event") + ".html", "_blank");
+                };
+            }
+        </script>
+    </div>
+</body>
+
+</html>
