@@ -25,5 +25,6 @@
 		<module>epg-reader</module>
 		<module>ttx-parser</module>
 		<module>ttx-pl-character-converter</module>
+		<module>ttx-enhancer</module>
 	</modules>
 </project>
