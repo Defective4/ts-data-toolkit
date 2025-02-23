@@ -125,7 +125,7 @@ public class Main {
 
                 System.err.println("Filling missing pages...");
                 int filled = 0;
-                for (int i = 0; i <= 999; i++) {
+                for (int i = 100; i <= 999; i++) {
                     File target = new File(ttxDir, i + ".html");
                     if (!target.exists()) {
                         String parsedTemplate = String
