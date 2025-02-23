@@ -25,7 +25,7 @@ public class Main {
             if (args.length < 1) {
                 String filename = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().getFile())
                         .getName();
-                System.err.println("Usage: java -jar " + filename + " [ttx html directory]");
+                System.err.println("Usage: java -jar " + filename + " [ttx html directory] <fill missing pages>");
                 System.exit(1);
                 return;
             }
@@ -57,8 +57,16 @@ public class Main {
             }
 
             boolean fill;
-            System.err.print("Should we fill in missing pages in the teletext directory? [y/N]: ");
-            fill = Character.toLowerCase(new InputStreamReader(System.in).read()) == 'y';
+            if (args.length > 1) {
+                String fillArg = args[1].toLowerCase();
+                if (fillArg.length() > 0) {
+                    char c = fillArg.charAt(0);
+                    fill = c == 'y' || c == 't';
+                } else fill = false;
+            } else {
+                System.err.print("Should we fill in missing pages in the teletext directory? [y/N]: ");
+                fill = Character.toLowerCase(new InputStreamReader(System.in).read()) == 'y';
+            }
 
             List<File> htmlFiles = new ArrayList<>(Arrays.stream(ttxDir.listFiles()).filter(f -> {
                 String name = f.getName();
