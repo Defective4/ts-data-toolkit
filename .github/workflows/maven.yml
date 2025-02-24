@@ -1,32 +1,37 @@
 on: push
 jobs:
-  maven:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Setup JDK
-        uses: actions/setup-java@v4.6.0
-        with:
-          java-version: 21
-          distribution: adopt
-      - name: Checkout
-        uses: actions/checkout@v4.2.2
-      - name: Clone dvbinspector repo
-        run: git clone https://github.com/EricBerendsen/dvbinspector
-      - name: Build dvbinspector
-        run: |
-          cd dvbinspector
-          git reset --hard 3217e78bfb5e41543bb858fa4228704669d31ac1
-          mvn install
-          cd ..
-          rm -rf dvbinspector
-      - name: Build the project
-        run: |
-           mvn package
-           mkdir out
-           find -name "*.jar" -exec mv {} out/ ";"
-           rm out/original*
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v4.5.0
-        with:
-          name: ts-data-toolkit
-          path: out/*.jar
+   maven:
+      runs-on: ubuntu-latest
+      steps:
+      -  name: Setup JDK
+         uses: actions/setup-java@v4.6.0
+         with:
+            java-version: 21
+            distribution: adopt
+      -  name: Checkout
+         uses: actions/checkout@v4.2.2
+      -  name: Clone dvbinspector repo
+         run: git clone https://github.com/EricBerendsen/dvbinspector
+      -  name: Build dvbinspector
+         run: |
+            cd dvbinspector
+            git reset --hard 3217e78bfb5e41543bb858fa4228704669d31ac1
+            mvn install
+            cd ..
+            rm -rf dvbinspector
+      -  name: Build the project
+         run: |
+            mvn package
+            mkdir out
+            find -name "*.jar" -exec mv {} out/ ";"
+      -  name: Include dependencies
+         run: |
+            mvn clean
+            mvn dependency:copy-dependencies
+            mkdir out/dependency
+            find -wholename "*dependency/*.jar" -exec mv {} out/dependency/ ";"
+      -  name: Upload build artifact
+         uses: actions/upload-artifact@v4.5.0
+         with:
+            name: ts-data-toolkit
+            path: out/*
