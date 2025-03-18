@@ -1,4 +1,5 @@
 # Transport Stream data toolkit
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)  
 This repository contains a set of tools for extracting and parsing Electronic Program Guide (EPG) and Teletext data from Transport Stream (.ts) files.
 
 # Requirements
