@@ -15,7 +15,7 @@ jobs:
       -  name: Build dvbinspector
          run: |
             cd dvbinspector
-            git reset --hard 3217e78bfb5e41543bb858fa4228704669d31ac1
+            git reset --hard 34660072ce3cc9879d7b1e8438816ad9deaad7e9
             mvn install
             cd ..
             rm -rf dvbinspector
