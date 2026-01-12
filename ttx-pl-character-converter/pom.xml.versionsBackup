@@ -5,9 +5,9 @@
 	<parent>
 		<groupId>io.github.defective4.tv</groupId>
 		<artifactId>ts-data-toolkit</artifactId>
-		<version>1.1</version>
+		<version>1.0</version>
 	</parent>
-	<artifactId>ttx-enhancer</artifactId>
+	<artifactId>ttx-pl-character-converter</artifactId>
 	<build>
 		<plugins>
 			<plugin>
@@ -17,18 +17,11 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>io.github.defective4.tv.ttxenh.Main</mainClass>
+							<mainClass>io.github.defective4.tv.ttxconverter.Main</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-	<dependencies>
-		<dependency>
-			<groupId>org.jsoup</groupId>
-			<artifactId>jsoup</artifactId>
-			<version>1.18.3</version>
-		</dependency>
-	</dependencies>
 </project>

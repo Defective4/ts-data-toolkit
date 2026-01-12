@@ -5,9 +5,8 @@
 	<parent>
 		<groupId>io.github.defective4.tv</groupId>
 		<artifactId>ts-data-toolkit</artifactId>
-		<version>1.1</version>
+		<version>1.0</version>
 	</parent>
-	<artifactId>epg-reader</artifactId>
 	<build>
 		<plugins>
 			<plugin>
@@ -17,28 +16,24 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>io.github.defective4.tv.epgreader.Main</mainClass>
+							<mainClass>io.github.defective4.tv.t42parser.Main</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+	<artifactId>ttx-parser</artifactId>
 	<dependencies>
-		<dependency>
-			<groupId>com.opencsv</groupId>
-			<artifactId>opencsv</artifactId>
-			<version>5.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jfree</groupId>
-			<artifactId>jfreechart</artifactId>
-			<version>1.5.5</version>
-		</dependency>
 		<dependency>
 			<groupId>nl.digitalekabeltelevisie</groupId>
 			<artifactId>DVBinspector</artifactId>
 			<version>1.21.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>5.9</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jsoup</groupId>
