@@ -11,11 +11,10 @@ jobs:
       -  name: Checkout
          uses: actions/checkout@v4.2.2
       -  name: Clone dvbinspector repo
-         run: git clone https://github.com/EricBerendsen/dvbinspector
+         run: git clone -b release_1_21_0 --depth 1 https://github.com/EricBerendsen/dvbinspector
       -  name: Build dvbinspector
          run: |
             cd dvbinspector
-            git reset --hard 34660072ce3cc9879d7b1e8438816ad9deaad7e9
             mvn install
             cd ..
             rm -rf dvbinspector
